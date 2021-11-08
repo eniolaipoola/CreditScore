@@ -23,4 +23,18 @@ class Converter {
             TypeToken<CreditReportInfo>() {}.type
         return gson.fromJson(reportId, type)
     }
+
+    @TypeConverter
+    fun fromCoachingSummary(coachingSummary: CoachingSummary): String {
+        val gson = Gson()
+        return gson.toJson(coachingSummary)
+    }
+
+    @TypeConverter
+    fun toCoachingSummary(id: String): CoachingSummary {
+        val gson = Gson()
+        val type = object :
+            TypeToken<CoachingSummary>() {}.type
+        return gson.fromJson(id, type)
+    }
 }

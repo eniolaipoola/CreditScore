@@ -1,4 +1,4 @@
-package com.dev.creditscoreapplication.ui.home
+package com.dev.creditscoreapplication.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
