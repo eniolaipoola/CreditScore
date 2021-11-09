@@ -27,5 +27,18 @@ class HomeFragment : Fragment() {
 
         credit_score_donut_view.setCircleSpanLength(514f, 700f)
         credit_score_donut_view.setText("Your credit score is  514 out of 700")
+
+        //todo:
+        //fetch credit score via api
+        //manage success, error and loading state
+        //on data fetched, update donut accordingly
+        //write test for donut-view and api call simulation
+
+
+        //design detail page
+        //on donut clicked, navigate to detail page
+        //display credit score information on detail page
+        //write ui tests for detail page
+
     }
 }

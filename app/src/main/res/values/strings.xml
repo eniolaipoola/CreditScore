@@ -3,4 +3,6 @@
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="donut">Donut</string>
+    <string name="credit_score">CreditScore</string>
+    <string name="credit_score_detail">Your credit summary is as represented below</string>
 </resources>
