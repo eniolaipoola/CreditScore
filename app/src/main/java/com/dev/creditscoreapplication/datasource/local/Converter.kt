@@ -1,6 +1,8 @@
 package com.dev.creditscoreapplication.datasource.local
 
 import androidx.room.TypeConverter
+import com.dev.creditscoreapplication.models.CoachingSummary
+import com.dev.creditscoreapplication.models.CreditReportInfo
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 

@@ -1,4 +1,4 @@
-package com.dev.creditscoreapplication.datasource.local
+package com.dev.creditscoreapplication.models
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -9,7 +9,7 @@ import androidx.room.PrimaryKey
  * Created on 08-Nov-2021
  */
 @Entity
-data class CreditScoreEntity(
+data class CreditScoreResponseBody(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
     val accountIDVStatus: String,

@@ -6,6 +6,8 @@ import android.util.AttributeSet
 import android.view.View
 import java.lang.Math.*
 import android.graphics.RectF
+import androidx.navigation.findNavController
+import com.dev.creditscoreapplication.R
 
 /**
  * Create custom circle and arc to represent credit score of a user
@@ -30,6 +32,10 @@ class DonutView @JvmOverloads constructor(
         color = Color.CYAN
         strokeWidth = 3F
         style = Paint.Style.STROKE
+    }
+
+    init {
+        isClickable = true   //make custom view clickable
     }
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
@@ -71,6 +77,16 @@ class DonutView @JvmOverloads constructor(
         creditScoreText?.let {
             canvas?.drawText(it, (width/2).toFloat(), (height/2).toFloat(), paint)
         }
+    }
+
+    override fun performClick(): Boolean {
+        if (super.performClick()) return true
+
+        //navigate to detail page
+        findNavController().navigate(R.id.detailFragment)
+
+        invalidate()
+        return true
     }
 
     /**
