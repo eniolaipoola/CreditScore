@@ -1,4 +1,4 @@
-package com.dev.creditscoreapplication.datasource.network
+package com.dev.creditscoreapplication.source.network
 
 import com.dev.creditscoreapplication.BuildConfig
 import com.google.gson.GsonBuilder
@@ -12,6 +12,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
+import javax.inject.Singleton
 
 /**
  * Copyright (c) 2021 Eniola Ipoola
@@ -56,5 +57,11 @@ class NetworkModule {
         }
 
         return loggingInterceptor
+    }
+
+    @Provides
+    @Singleton
+    fun provideCreditScoreService(retrofit: Retrofit) : CreditScoreService{
+        return retrofit.create(CreditScoreService::class.java)
     }
 }

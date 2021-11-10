@@ -1,7 +1,7 @@
-package com.dev.creditscoreapplication.datasource.local
+package com.dev.creditscoreapplication.source.local
 
 import android.content.Context
-import com.dev.creditscoreapplication.datasource.local.CreditScoreDatabase.Companion.getInstance
+import com.dev.creditscoreapplication.source.local.CreditScoreDatabase.Companion.getInstance
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

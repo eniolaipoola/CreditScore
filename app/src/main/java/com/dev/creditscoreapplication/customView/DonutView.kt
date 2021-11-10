@@ -94,9 +94,10 @@ class DonutView @JvmOverloads constructor(
      * Score: User's credit score
      * maxScoreValue: Maximum score value that can be attained
      */
-    fun setCircleSpanLength(score: Float, maxScoreValue: Float)  {
+    fun calculateSweepAngle(score: Float, maxScoreValue: Float)  {
         val result: Float = (score / maxScoreValue) * 360
         sweepAngle = result
+        invalidate()
     }
 
     /**
