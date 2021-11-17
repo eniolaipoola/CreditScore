@@ -1,6 +1,7 @@
 package com.dev.creditscoreapplication.source
 
-import com.dev.creditscoreapplication.models.CreditScoreResponseBody
+import com.dev.creditscoreapplication.models.CreditScoreEntity
+import com.dev.creditscoreapplication.source.local.CreditScoreDao
 import com.dev.creditscoreapplication.source.network.CreditScoreService
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
@@ -15,10 +16,20 @@ class Repository @Inject constructor(
     private val dispatcher: CoroutineDispatcher) {
 
     @Inject lateinit var creditScoreService: CreditScoreService
+    @Inject lateinit var creditScoreDAO: CreditScoreDao
+    lateinit var creditScoreData : CreditScoreEntity
 
-    suspend fun fetchCreditScoreData(): CreditScoreResponseBody{
-        return withContext(dispatcher){
-            creditScoreService.fetchCreditScore()
+    suspend fun fetchRemoteCreditScoreData(){
+        withContext(dispatcher){
+            creditScoreData = creditScoreService.fetchCreditScore()
+            creditScoreDAO.insertAll(creditScoreData)
         }
+    }
+
+    suspend fun getCreditScore(): CreditScoreEntity {
+        withContext(dispatcher) {
+            creditScoreData = creditScoreDAO.getCreditScore()
+        }
+        return creditScoreData
     }
 }

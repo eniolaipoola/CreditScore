@@ -20,4 +20,10 @@ class DetailFragment : Fragment() {
         @JvmStatic
         fun newInstance() = DetailFragment()
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+
+    }
 }

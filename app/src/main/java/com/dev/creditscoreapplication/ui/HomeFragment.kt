@@ -1,12 +1,14 @@
 package com.dev.creditscoreapplication.ui
 
 import android.os.Bundle
+import android.text.SpannableStringBuilder
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.dev.creditscoreapplication.R
 import kotlinx.android.synthetic.main.fragment_home.*
 import com.dev.creditscoreapplication.models.Result
@@ -26,7 +28,7 @@ class HomeFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
-    private fun observeData() {
+    private fun setUpObservers() {
         viewModel.creditScoreState.observe(viewLifecycleOwner, { result ->
             when (result) {
                 is Result.Error -> {
@@ -47,6 +49,10 @@ class HomeFragment : Fragment() {
                         score.toFloat(),
                         maximumScore.toFloat()
                     )
+
+                    val spannable = SpannableStringBuilder(
+                        "Your credit score is $score out of $maximumScore")
+                    //spannable.setSpan()
                     credit_score_donut_view.setText("Your credit score is $score out of $maximumScore")
 
                 }
@@ -60,15 +66,23 @@ class HomeFragment : Fragment() {
                     }
                 }
             }
-
         })
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.fetchCreditScoreData()
-        observeData()
+        //viewModel.fetchRemoteCreditScoreData()
+        //viewModel.getCreditScoreData()
+
+/*
+        credit_score_donut_view.setOnClickListener {
+            val action = HomeFragmentDirections.actionHomeToDetail()
+            findNavController().navigate(action)
+        }
+*/
+
+        setUpObservers()
 
     }
 }
@@ -76,6 +90,5 @@ class HomeFragment : Fragment() {
 
 //write test for donut-view and api call simulation
 //design detail page
-//on donut clicked, navigate to detail page
 //display credit score information on detail page
 //write ui tests for detail page

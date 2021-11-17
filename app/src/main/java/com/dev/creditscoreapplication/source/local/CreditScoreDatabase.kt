@@ -6,9 +6,9 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.dev.creditscoreapplication.BuildConfig
-import com.dev.creditscoreapplication.models.CreditScoreResponseBody
+import com.dev.creditscoreapplication.models.CreditScoreEntity
 
-@Database(entities = [CreditScoreResponseBody::class], version = 1, exportSchema = false)
+@Database(entities = [CreditScoreEntity::class], version = 1, exportSchema = false)
 @TypeConverters(Converter::class)
 abstract class CreditScoreDatabase: RoomDatabase() {
 
@@ -29,5 +29,7 @@ abstract class CreditScoreDatabase: RoomDatabase() {
             return sInstance
         }
     }
+
+    abstract fun creditScoreDao(): CreditScoreDao
 
 }

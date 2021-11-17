@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dev.creditscoreapplication.source.Repository
-import com.dev.creditscoreapplication.models.CreditScoreResponseBody
+import com.dev.creditscoreapplication.models.CreditScoreEntity
 import com.dev.creditscoreapplication.models.ErrorStatus
 import com.dev.creditscoreapplication.models.Result
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -25,16 +25,23 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val repository: Repository): ViewModel() {
 
-    val creditScoreState = MutableLiveData<Result<CreditScoreResponseBody>>()
+    val creditScoreState = MutableLiveData<Result<CreditScoreEntity>>()
 
-    fun fetchCreditScoreData(){
-        viewModelScope.launch(exceptionHandler(creditScoreState)){
+    fun getCreditScoreData() {
+        viewModelScope.launch {
             creditScoreState.postValue(Result.Loading(true))
-            val result = repository.fetchCreditScoreData()
+            val result = repository.getCreditScore()
             creditScoreState.postValue(Result.Success(result))
         }
     }
 
+    fun fetchRemoteCreditScoreData(){
+        viewModelScope.launch(exceptionHandler(creditScoreState)) {
+            creditScoreState.postValue(Result.Loading(true))
+            repository.fetchRemoteCreditScoreData()
+            creditScoreState.postValue(Result.Loading(false))
+        }
+    }
 
     private fun <T> exceptionHandler(liveData: MutableLiveData<Result<T>>): CoroutineExceptionHandler {
         return CoroutineExceptionHandler{ _ , throwable ->

@@ -5,6 +5,7 @@ import com.dev.creditscoreapplication.source.local.CreditScoreDatabase.Companion
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 
 /**
@@ -17,7 +18,12 @@ import dagger.hilt.components.SingletonComponent
 class DatabaseModule {
 
     @Provides
-    fun providesRoomDatabase(context: Context): CreditScoreDatabase {
+    fun providesRoomDatabase(@ApplicationContext context: Context): CreditScoreDatabase {
         return getInstance(context)!!
+    }
+
+    @Provides
+    fun providesDao(database: CreditScoreDatabase): CreditScoreDao {
+        return database.creditScoreDao()
     }
 }

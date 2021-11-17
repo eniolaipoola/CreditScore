@@ -8,8 +8,8 @@ import androidx.room.PrimaryKey
  * All rights reserved
  * Created on 08-Nov-2021
  */
-@Entity
-data class CreditScoreResponseBody(
+@Entity(tableName = "credit_score_tbl")
+data class CreditScoreEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
     val accountIDVStatus: String,
@@ -40,8 +40,8 @@ data class CreditReportInfo(
     val currentShortTermCreditUtilisation: Int,
     val changeInShortTermDebt: Int,
     val currentLongTermDebt: Int,
-    val currentLongTermNonPromotionalDebt: Int,
-    val currentLongTermCreditLimit: Int,
+    val currentLongTermNonPromotionalDebt: Int?,
+    val currentLongTermCreditLimit: Int?,
     val currentLongTermCreditUtilisation: Int?,
     val changeInLongTermDebt: Int,
     val numPositiveScoreFactors: Int,
@@ -52,8 +52,6 @@ data class CreditReportInfo(
 )
 
 data class CoachingSummary(
-    @PrimaryKey(autoGenerate = true)
-    val id: String,
     val activeTodo: Boolean,
     val activeChat: Boolean,
     val numberOfTodoItems: Int,
