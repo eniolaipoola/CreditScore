@@ -1,8 +1,17 @@
 <resources>
     <string name="app_name">CreditScoreApplication</string>
 
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="donut">Donut</string>
     <string name="credit_score">CreditScore</string>
     <string name="credit_score_detail">Your credit summary is as represented below</string>
+    <string name="accountStatus">Account Status:</string>
+    <string name="personaType">Persona Type:</string>
+    <string name="account_status_value">Pass</string>
+    <string name="persona_type_value">Inexperienced</string>
+    <string name="report_details_text">Report Details</string>
+    <string name="client_reference_text">Client Reference: </string>
+    <string name="short_term_credit_limit_text">Current Short Term Credit Limit</string>
+    <string name="short_term_debt_limit_text">Current Short Term Debt Limit</string>
+    <string name="client_reference_value_text">FAB-2021</string>
+    <string name="short_term_credit_limit_value_text">40600</string>
+    <string name="short_term_debt_limit_text_value">15600</string>
 </resources>
