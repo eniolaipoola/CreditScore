@@ -1,4 +1,4 @@
-package com.dev.creditscoreapplication.source.local
+package com.dev.creditscoreapplication.datasource.local
 
 import androidx.room.Dao
 import androidx.room.Insert
@@ -16,7 +16,7 @@ import com.dev.creditscoreapplication.models.CreditScoreEntity
 interface CreditScoreDao {
 
     @Query("SELECT * FROM credit_score_tbl limit 1")
-    fun getCreditScore() : CreditScoreEntity
+    fun getCreditScoreFromDatabase() : CreditScoreEntity?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(creditScore: CreditScoreEntity)

@@ -1,4 +1,3 @@
-/*
 package com.dev.creditscoreapplication.customView
 
 import android.view.LayoutInflater
@@ -11,12 +10,11 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 
-*/
 /**
  * Copyright (c) 2021 Eniola Ipoola
  * All rights reserved
  * Created on 13-Nov-2021
- *//*
+ */
 
 @RunWith(AndroidJUnit4::class)
 class DonutViewTest : TestCase() {
@@ -36,4 +34,3 @@ class DonutViewTest : TestCase() {
         val titleTextView = donutView?.findViewById<DonutView>(R.id.credit_score_donut_view)
     }
 }
-*/

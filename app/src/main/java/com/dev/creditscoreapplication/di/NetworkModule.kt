@@ -1,6 +1,7 @@
-package com.dev.creditscoreapplication.source.network
+package com.dev.creditscoreapplication.di
 
 import com.dev.creditscoreapplication.BuildConfig
+import com.dev.creditscoreapplication.datasource.network.CreditScoreService
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
@@ -61,7 +62,7 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideCreditScoreService(retrofit: Retrofit) : CreditScoreService{
+    fun provideCreditScoreService(retrofit: Retrofit) : CreditScoreService {
         return retrofit.create(CreditScoreService::class.java)
     }
 }

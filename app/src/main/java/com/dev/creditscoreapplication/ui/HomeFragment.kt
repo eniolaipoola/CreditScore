@@ -72,15 +72,13 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //viewModel.fetchRemoteCreditScoreData()
-        //viewModel.getCreditScoreData()
+        viewModel.fetchRemoteCreditScoreData()
+        viewModel.getCreditScoreData()
 
-/*
         credit_score_donut_view.setOnClickListener {
             val action = HomeFragmentDirections.actionHomeToDetail()
             findNavController().navigate(action)
         }
-*/
 
         setUpObservers()
 

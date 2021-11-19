@@ -1,4 +1,4 @@
-package com.dev.creditscoreapplication.source.local
+package com.dev.creditscoreapplication.datasource.local
 
 import android.content.Context
 import androidx.room.Database

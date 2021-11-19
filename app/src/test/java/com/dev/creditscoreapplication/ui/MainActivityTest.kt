@@ -1,4 +1,3 @@
-/*
 package com.dev.creditscoreapplication.ui
 
 import android.os.Looper.getMainLooper
@@ -15,18 +14,16 @@ import org.robolectric.Shadows.shadowOf
 import org.robolectric.annotation.Config
 import org.robolectric.annotation.LooperMode
 
-*/
 /**
  * Copyright (c) 2021 Eniola Ipoola
  * All rights reserved
  * Created on 17-Nov-2021
- *//*
-
+ */
 @HiltAndroidTest
 @Config(application = HiltTestApplication::class)
 @RunWith(RobolectricTestRunner::class)
 @LooperMode(LooperMode.Mode.PAUSED)   //run robolectric tests on the main thread
-class MainActivityTest {
+class MainActivityTest2 {
 
     @get:Rule(order = 0)
     var hiltAndroidRule = HiltAndroidRule(this)
@@ -44,5 +41,4 @@ class MainActivityTest {
         shadowOf(getMainLooper()).idle()
         activityScenarioRule.scenario  //allows launching of the activity
     }
-
-}*/
+}

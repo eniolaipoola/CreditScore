@@ -1,12 +1,15 @@
-package com.dev.creditscoreapplication.source.local
+package com.dev.creditscoreapplication.di
 
 import android.content.Context
-import com.dev.creditscoreapplication.source.local.CreditScoreDatabase.Companion.getInstance
+import com.dev.creditscoreapplication.datasource.local.CreditScoreDao
+import com.dev.creditscoreapplication.datasource.local.CreditScoreDatabase
+import com.dev.creditscoreapplication.datasource.local.CreditScoreDatabase.Companion.getInstance
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
 
 /**
  * Copyright (c) 2021 Eniola Ipoola
@@ -18,6 +21,7 @@ import dagger.hilt.components.SingletonComponent
 class DatabaseModule {
 
     @Provides
+    @Singleton
     fun providesRoomDatabase(@ApplicationContext context: Context): CreditScoreDatabase {
         return getInstance(context)!!
     }
