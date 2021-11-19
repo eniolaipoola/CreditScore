@@ -12,6 +12,7 @@ import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Before
 import org.junit.Test
 import androidx.test.espresso.matcher.ViewMatchers.*
+import com.dev.creditscoreapplication.ui.home.HomeFragment
 import org.hamcrest.Matchers.*
 import org.junit.runner.RunWith
 
@@ -46,7 +47,7 @@ class HomeFragmentTest  {
     }
 
     @Test
-    fun testSetDonutViewText_SomeValue_DonutViewHasValue(){
+    fun testDonutView_isDisplayed(){
         onView(allOf(withId(R.id.credit_score_donut_view), isDisplayed()))
     }
 

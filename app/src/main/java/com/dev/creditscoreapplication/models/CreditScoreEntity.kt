@@ -1,7 +1,9 @@
 package com.dev.creditscoreapplication.models
 
+import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.android.parcel.Parcelize
 
 /**
  * Copyright (c) 2021 Eniola Ipoola
@@ -20,6 +22,7 @@ data class CreditScoreEntity(
     val augmentedCreditScore: Int?,
 )
 
+@Parcelize
 data class CreditReportInfo(
     val score: Int,
     val scoreBand: Int,
@@ -49,7 +52,7 @@ data class CreditReportInfo(
     val equifaxScoreBand: Int,
     val equifaxScoreBandDescription: String,
     val daysUntilNextReport: Int,
-)
+) : Parcelable
 
 data class CoachingSummary(
     val activeTodo: Boolean,

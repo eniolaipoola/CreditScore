@@ -1,9 +1,10 @@
-package com.dev.creditscoreapplication.ui
+package com.dev.creditscoreapplication.ui.home
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dev.creditscoreapplication.datasource.Repository
+import com.dev.creditscoreapplication.models.CreditReportInfo
 import com.dev.creditscoreapplication.models.CreditScoreEntity
 import com.dev.creditscoreapplication.models.Result
 import com.dev.creditscoreapplication.utils.exceptionHandler
@@ -21,6 +22,7 @@ class HomeViewModel @Inject constructor(
     private val repository: Repository): ViewModel() {
 
     val creditScoreState = MutableLiveData<Result<CreditScoreEntity>>()
+    val creditReportInfoState = MutableLiveData<Result<CreditReportInfo>>()
 
     fun getCreditScoreData() {
         viewModelScope.launch {
@@ -28,6 +30,16 @@ class HomeViewModel @Inject constructor(
             val result = repository.fetchLocalCreditScoreData()
             if(result != null){
                 creditScoreState.postValue(Result.Success(result))
+            }
+        }
+    }
+
+    fun getCreditReportInformation() {
+        viewModelScope.launch {
+            creditReportInfoState.postValue(Result.Loading(true))
+            val result = repository.fetchCreditReportInfo()
+            if(result != null) {
+                creditReportInfoState.postValue(Result.Success(result))
             }
         }
     }

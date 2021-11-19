@@ -6,7 +6,7 @@ import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.dev.creditscoreapplication.R
-import com.dev.creditscoreapplication.ui.HomeFragment
+import com.dev.creditscoreapplication.ui.home.HomeFragment
 import com.dev.creditscoreapplication.ui.launchFragmentInHiltContainer
 import org.hamcrest.Matchers.allOf
 import org.junit.Before
@@ -35,8 +35,6 @@ class DonutViewTest {
     fun testSetDonutViewText_SomeValue_DonutViewHasValue(){
         launchFragmentInHiltContainer<HomeFragment>()
         donutView.setText("Hello Eniola")
-        onView(
-            allOf(withId(R.id.credit_score_donut_view), isDisplayed())
-        )
+        onView(allOf(withId(R.id.credit_score_donut_view), isDisplayed()))
     }
 }

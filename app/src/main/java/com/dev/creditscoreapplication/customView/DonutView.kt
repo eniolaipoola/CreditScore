@@ -18,18 +18,34 @@ class DonutView @JvmOverloads constructor(
 
     private var radius = 0.0f      // Radius of the circle.
     private var creditScoreText: String? = null
+    private var scoreValueText: String? = null
+    private var maxScoreValueText: String? = null
     private var sweepAngle: Float? = null
 
     private val paint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         style = Paint.Style.STROKE
         textAlign = Paint.Align.CENTER
-        textSize = 25.0f
-        strokeWidth = 3F
+        typeface = Typeface.create( "", Typeface.NORMAL)
+    }
+
+    private val scoreValuePaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+        style = Paint.Style.FILL
+        textAlign = Paint.Align.CENTER
+        color = context.resources.getColor(R.color.colorGreen)
+        textSize = 60.0f
+        typeface = Typeface.create( "", Typeface.NORMAL)
+    }
+
+    private val paint2 = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+        style = Paint.Style.FILL
+        textAlign = Paint.Align.CENTER
+        color = context.resources.getColor(R.color.text_color)
+        textSize = 35.0f
         typeface = Typeface.create( "", Typeface.NORMAL)
     }
 
     private val arcPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
-        color = Color.CYAN
+        color = context.resources.getColor(R.color.teal_200)
         strokeWidth = 3F
         style = Paint.Style.STROKE
     }
@@ -47,7 +63,7 @@ class DonutView @JvmOverloads constructor(
         super.onDraw(canvas)
 
         //circle
-        paint.color = Color.GRAY
+        paint.color = context.resources.getColor(R.color.text_color)
         radius = if(width > height){
             (height / 2).toFloat()
         } else {
@@ -75,8 +91,15 @@ class DonutView @JvmOverloads constructor(
         }
         //Set text to show user the credit score progress
         creditScoreText?.let {
-            canvas?.drawText(it, (width/2).toFloat(), (height/2).toFloat(), paint)
+            canvas?.drawText(it, (width/2).toFloat(), (height/3).toFloat(), paint2)
         }
+        scoreValueText?.let {
+            canvas?.drawText(it, (width/2).toFloat(), (height/2).toFloat(), scoreValuePaint)
+        }
+        maxScoreValueText?.let {
+            canvas?.drawText(it, (width/2).toFloat(), (height/1.5).toFloat(), paint2)
+        }
+
     }
 
     override fun performClick(): Boolean {
@@ -103,8 +126,10 @@ class DonutView @JvmOverloads constructor(
     /**
      * Set credit score text to display at the centre of the circle
      */
-    fun setText(text: String) {
-        creditScoreText = text
+    fun setText(messageText: String, scoreText: String, maxScoreText: String) {
+        creditScoreText = messageText
+        scoreValueText = scoreText
+        maxScoreValueText = maxScoreText
     }
 
 }

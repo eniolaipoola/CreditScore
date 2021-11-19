@@ -1,7 +1,6 @@
-package com.dev.creditscoreapplication.ui
+package com.dev.creditscoreapplication.ui.home
 
 import android.os.Bundle
-import android.text.SpannableStringBuilder
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.dev.creditscoreapplication.R
+import com.dev.creditscoreapplication.models.CreditReportInfo
 import kotlinx.android.synthetic.main.fragment_home.*
 import com.dev.creditscoreapplication.models.Result
 import com.dev.creditscoreapplication.utils.hide
@@ -20,6 +20,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class HomeFragment : Fragment() {
 
     private val viewModel by viewModels<HomeViewModel>()
+    lateinit var creditReportInfo: CreditReportInfo
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,15 +46,18 @@ class HomeFragment : Fragment() {
                     val score = creditScoreData.creditReportInfo.score
                     val maximumScore = creditScoreData.creditReportInfo.maxScoreValue
 
+                    creditReportInfo = creditScoreData.creditReportInfo
+
                     credit_score_donut_view.calculateSweepAngle(
                         score.toFloat(),
                         maximumScore.toFloat()
                     )
 
-                    val spannable = SpannableStringBuilder(
-                        "Your credit score is $score out of $maximumScore")
-                    //spannable.setSpan()
-                    credit_score_donut_view.setText("Your credit score is $score out of $maximumScore")
+                    accountStatusValue.text = result.value.accountIDVStatus
+                    personaTypeValue.text = result.value.personaType
+                    credit_score_donut_view.setText(
+                        "Your credit score is",
+                        score.toString(),"out of $maximumScore")
 
                 }
 
@@ -76,17 +80,12 @@ class HomeFragment : Fragment() {
         viewModel.getCreditScoreData()
 
         credit_score_donut_view.setOnClickListener {
-            val action = HomeFragmentDirections.actionHomeToDetail()
-            findNavController().navigate(action)
+            val bundle = Bundle()
+            bundle.putParcelable("creditInfoData", creditReportInfo)
+            findNavController().navigate(R.id.detailFragment, bundle)
         }
 
         setUpObservers()
 
     }
 }
-
-
-//write test for donut-view and api call simulation
-//design detail page
-//display credit score information on detail page
-//write ui tests for detail page

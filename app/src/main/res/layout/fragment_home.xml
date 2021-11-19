@@ -5,8 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:ignore="spUsage"
+    android:background="@color/white"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.HomeFragment">
+    tools:context=".ui.home.HomeFragment">
 
     <TextView
         android:id="@+id/app_name"
@@ -14,7 +15,7 @@
         android:layout_height="wrap_content"
         android:textSize="25dp"
         android:textColor="@color/colorGreen"
-        android:layout_marginStart="@dimen/margin_start"
+        android:layout_marginStart="@dimen/margin_24"
         android:layout_marginTop="@dimen/margin_top"
         android:text="@string/credit_score"
         android:textStyle="bold"
@@ -30,7 +31,7 @@
         android:layout_height="wrap_content"
         android:textSize="13dp"
         android:textColor="@color/design_default_color_on_secondary"
-        android:layout_marginStart="@dimen/margin_start"
+        android:layout_marginStart="@dimen/margin_24"
         android:layout_marginTop="8dp"
         android:text="@string/credit_score_detail"
         android:gravity="start"
@@ -38,13 +39,69 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/app_name"/>
 
+    <TextView
+        android:id="@+id/accountStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:textColor="@color/text_color"
+        android:layout_marginStart="@dimen/margin_24"
+        android:layout_marginTop="@dimen/margin_24"
+        android:text="@string/accountStatus"
+        android:gravity="start"
+        android:fontFamily="@font/silka"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/app_detail"/>
+
+    <TextView
+        android:id="@+id/accountStatusValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="13dp"
+        android:textColor="@color/text_color"
+        android:layout_marginStart="@dimen/margin_8"
+        android:layout_marginTop="@dimen/margin_24"
+        tools:text="@string/account_status_value"
+        android:gravity="start"
+        android:fontFamily="@font/silka"
+        app:layout_constraintStart_toEndOf="@+id/accountStatus"
+        app:layout_constraintTop_toBottomOf="@+id/app_detail"/>
+
+    <TextView
+        android:id="@+id/personaType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:textColor="@color/text_color"
+        android:layout_marginStart="@dimen/margin_24"
+        android:layout_marginTop="16dp"
+        android:text="@string/personaType"
+        android:gravity="start"
+        android:fontFamily="@font/silka"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/accountStatus"/>
+
+    <TextView
+        android:id="@+id/personaTypeValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="13dp"
+        android:textColor="@color/text_color"
+        android:layout_marginStart="@dimen/margin_8"
+        android:layout_marginTop="16dp"
+        tools:text="@string/persona_type_value"
+        android:gravity="start"
+        android:fontFamily="@font/silka"
+        app:layout_constraintStart_toEndOf="@+id/personaType"
+        app:layout_constraintTop_toBottomOf="@+id/accountStatus"/>
+
     <com.dev.creditscoreapplication.customView.DonutView
         android:id="@+id/credit_score_donut_view"
         android:layout_width="300dp"
         android:layout_height="250dp"
         android:minWidth="200dp"
         android:clickable="true"
-        app:layout_constraintTop_toBottomOf="@+id/app_detail"
+        app:layout_constraintTop_toBottomOf="@+id/personaType"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="24dp"

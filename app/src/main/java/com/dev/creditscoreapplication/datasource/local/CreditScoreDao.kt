@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.dev.creditscoreapplication.models.CreditReportInfo
 import com.dev.creditscoreapplication.models.CreditScoreEntity
 
 /**
@@ -20,5 +21,8 @@ interface CreditScoreDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(creditScore: CreditScoreEntity)
+
+    @Query("SELECT creditReportInfo FROM credit_score_tbl  limit 1")
+    fun getCreditReportInfoFromDatabase() : CreditReportInfo?
 
 }

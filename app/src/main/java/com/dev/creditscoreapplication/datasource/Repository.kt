@@ -3,6 +3,7 @@ package com.dev.creditscoreapplication.datasource
 import com.dev.creditscoreapplication.models.CreditScoreEntity
 import com.dev.creditscoreapplication.datasource.local.CreditScoreDao
 import com.dev.creditscoreapplication.datasource.network.CreditScoreService
+import com.dev.creditscoreapplication.models.CreditReportInfo
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -18,6 +19,7 @@ class Repository @Inject constructor(
     private val creditScoreDAO: CreditScoreDao) {
 
     private var creditScoreData : CreditScoreEntity? = null
+    private var creditReportInfo : CreditReportInfo? = null
 
     suspend fun fetchRemoteCreditScoreData() {
         withContext(dispatcher){
@@ -35,5 +37,18 @@ class Repository @Inject constructor(
             }
         }
         return creditScoreData
+    }
+
+
+    suspend fun fetchCreditReportInfo() : CreditReportInfo? {
+        withContext(dispatcher) {
+            creditReportInfo = creditScoreDAO.getCreditReportInfoFromDatabase()
+            if(creditScoreData == null) {
+                //fetch from remote
+                fetchRemoteCreditScoreData()
+            }
+        }
+
+        return  creditReportInfo
     }
 }
