@@ -7,11 +7,8 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="arc_progress_color">#FFD8D0</color>
     <color name="text_color">#1A284B</color>
     <color name="colour_orange">#FD6518</color>
-    <color name="colour_pink">#FA2456</color>
     <color name="colour_purple">#5632FB</color>
     <color name="statistics_text_color">#647589</color>
-    <color name="page_background_color">#F5F5F5</color>
 </resources>

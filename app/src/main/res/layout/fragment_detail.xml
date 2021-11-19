@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:ignore="spUsage"
-    android:background="@color/page_background_color"
     tools:context=".ui.detail.DetailFragment">
 
     <ImageView
@@ -30,7 +29,6 @@
         android:text="@string/report_details_text"
         android:textStyle="bold"
         android:gravity="start"
-        android:fontFamily="@font/silka"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/back_button"/>
 
@@ -40,7 +38,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_16"
         android:layout_marginTop="@dimen/margin_16"
-        android:fontFamily="@font/silka"
         android:gravity="start"
         android:maxLines="2"
         android:text="@string/client_reference_text"
@@ -60,7 +57,6 @@
         android:layout_marginTop="@dimen/margin_16"
         tools:text="@string/client_reference_value_text"
         android:gravity="start"
-        android:fontFamily="@font/silka"
         app:layout_constraintStart_toEndOf="@+id/client_reference_text"
         app:layout_constraintTop_toBottomOf="@+id/report_details"/>
 
@@ -92,7 +88,6 @@
                 android:text="@string/short_term_credit_limit_text"
                 android:gravity="start"
                 android:layout_marginEnd="@dimen/margin_16"
-                android:fontFamily="@font/silka"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
@@ -108,7 +103,6 @@
                 tools:text="@string/short_term_credit_limit_value_text"
                 android:gravity="start"
                 android:textStyle="bold"
-                android:fontFamily="@font/silka"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/short_term_credit_limit"/>
 
@@ -145,7 +139,6 @@
                 android:text="@string/short_term_debt_limit_text"
                 android:gravity="start"
                 android:layout_marginEnd="@dimen/margin_16"
-                android:fontFamily="@font/silka"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
@@ -156,7 +149,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_16"
                 android:layout_marginTop="@dimen/margin_16"
-                android:fontFamily="@font/silka"
                 android:gravity="start"
                 tools:text="@string/short_term_debt_limit_text_value"
                 android:textColor="@color/colour_purple"
