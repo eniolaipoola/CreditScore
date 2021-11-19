@@ -2,13 +2,16 @@ package com.dev.creditscoreapplication.customView
 
 import android.view.LayoutInflater
 import androidx.test.core.app.ApplicationProvider
+import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.dev.creditscoreapplication.R
-import junit.framework.TestCase
-import org.junit.BeforeClass
+import com.dev.creditscoreapplication.ui.HomeFragment
+import com.dev.creditscoreapplication.ui.launchFragmentInHiltContainer
+import org.hamcrest.Matchers.allOf
+import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-
 
 /**
  * Copyright (c) 2021 Eniola Ipoola
@@ -17,20 +20,23 @@ import org.junit.runner.RunWith
  */
 
 @RunWith(AndroidJUnit4::class)
-class DonutViewTest : TestCase() {
+class DonutViewTest {
 
-    var donutView: DonutView? = null
+    lateinit var donutView: DonutView
 
-    @BeforeClass
-    override fun setUp() {
-        super.setUp()
-        donutView = LayoutInflater.from(ApplicationProvider.getApplicationContext())
-            .inflate(R.layout.fragment_home, null) as DonutView?
+    @Before
+    fun setUp() {
+       val view = LayoutInflater.from(ApplicationProvider.getApplicationContext())
+            .inflate(R.layout.fragment_home, null)
+        donutView = view.findViewById(R.id.credit_score_donut_view)
     }
 
     @Test
-    fun testSetText_SomeValue_TextViewHasValue(){
-        donutView?.setText("Hello Eniola")
-        val titleTextView = donutView?.findViewById<DonutView>(R.id.credit_score_donut_view)
+    fun testSetDonutViewText_SomeValue_DonutViewHasValue(){
+        launchFragmentInHiltContainer<HomeFragment>()
+        donutView.setText("Hello Eniola")
+        onView(
+            allOf(withId(R.id.credit_score_donut_view), isDisplayed())
+        )
     }
 }
