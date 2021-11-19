@@ -1,8 +1,14 @@
 package com.dev.creditScoreApplication.customView
 
 import android.view.LayoutInflater
+import androidx.test.core.app.ApplicationProvider
+import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.dev.creditScoreApplication.R
+import com.dev.creditScoreApplication.ui.home.HomeFragment
+import com.dev.creditScoreApplication.ui.launchFragmentInHiltContainer
+import org.hamcrest.Matchers.allOf
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -28,7 +34,7 @@ class DonutViewTest {
     @Test
     fun testSetDonutViewText_SomeValue_DonutViewHasValue(){
         launchFragmentInHiltContainer<HomeFragment>()
-        donutView.setText("Hello Eniola")
+        donutView.setText("Your credit score is", 500.toString(), "out of 700")
         onView(allOf(withId(R.id.credit_score_donut_view), isDisplayed()))
     }
 }

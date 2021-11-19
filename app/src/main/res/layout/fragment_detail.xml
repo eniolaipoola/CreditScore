@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:ignore="spUsage"
+    android:background="@color/off_white"
     tools:context=".ui.detail.DetailFragment">
 
     <ImageView
@@ -68,6 +69,7 @@
         android:layout_marginStart="@dimen/margin_16"
         android:layout_marginTop="@dimen/margin_16"
         app:cardElevation="0dp"
+        app:cardBackgroundColor="@color/colorSecondary"
         app:layout_constraintEnd_toStartOf="@+id/short_term_debt"
         android:background="@drawable/credit_score_statistics_background"
         app:layout_constraintStart_toStartOf="parent">

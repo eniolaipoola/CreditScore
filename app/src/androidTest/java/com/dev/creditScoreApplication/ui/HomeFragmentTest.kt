@@ -1,15 +1,27 @@
 package com.dev.creditScoreApplication.ui
 
+import android.os.Bundle
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.MediumTest
 import com.dev.creditScoreApplication.FakeAndroidTestRepository
+import com.dev.creditScoreApplication.R
+import com.dev.creditScoreApplication.customView.DonutView
+import com.dev.creditScoreApplication.models.CreditScoreEntity
+import com.dev.creditScoreApplication.ui.home.HomeFragment
+import com.dev.creditScoreApplication.ui.home.HomeFragmentDirections
 import dagger.hilt.android.testing.HiltAndroidTest
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import org.hamcrest.Matchers.*
 import org.junit.Before
 import org.junit.Test
-import androidx.test.espresso.matcher.ViewMatchers.*
-import org.hamcrest.Matchers.*
 import org.junit.runner.RunWith
+import org.mockito.Mockito.mock
+import org.mockito.Mockito.verify
 
 /**
  * Copyright (c) 2021 Eniola Ipoola
@@ -24,15 +36,16 @@ import org.junit.runner.RunWith
 class HomeFragmentTest  {
 
     private lateinit var repository: FakeAndroidTestRepository
+    lateinit var creditScoreData: CreditScoreEntity
 
     @Before
     fun initRepository() {
         repository = FakeAndroidTestRepository()
+        creditScoreData = repository.creditScoreSampleData
     }
 
     @Test
     fun drawDonut_DisplayCreditScoreInUI() {
-        val creditScoreData = repository.creditScoreSampleData
         launchFragmentInHiltContainer<HomeFragment> {
             assert(this.view?.findViewById<DonutView>(R.id.credit_score_donut_view) != null)
             val score = creditScoreData.creditReportInfo.score
@@ -46,17 +59,26 @@ class HomeFragmentTest  {
         onView(allOf(withId(R.id.credit_score_donut_view), isDisplayed()))
     }
 
-    /*@Test
+    @Test
     fun clickDonutView_navigateToDetailPage()  {
-        //given the home page
-        launchFragmentInHiltContainer<HomeFragment>(themeResId = R.style.ThemeOverlay_AppCompat_Dark)
+        //Given, the home page
+        val data = creditScoreData.creditReportInfo
+        val bundleData = Bundle().apply {
+            putParcelable("creditInfoData", data)
+        }
+
         val navController = mock(NavController::class.java)
-        //onclick of donut view
+        launchFragmentInHiltContainer<HomeFragment>(bundleData,
+            themeResId = R.style.ThemeOverlay_AppCompat_Dark){
+            Navigation.setViewNavController( this.view!!, navController)
+        }
+
+        //When, onclick of donut view
         onView(
-            allOf(withId(R.id.credit_score_donut_view))
-        ).perform(ViewActions.click())
-        //navigate to detail page
+            allOf(withId(R.id.credit_score_donut_view), `is`(isClickable()))).perform(click())
+
+        //Then, navigate to detail page
         verify(navController).navigate(HomeFragmentDirections.actionHomeToDetail())
 
-    }*/
+    }
 }
