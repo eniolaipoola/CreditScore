@@ -74,8 +74,11 @@ class HomeFragmentTest  {
         }
 
         //When, onclick of donut view
+       /* onView(
+            allOf(withId(R.id.credit_score_donut_view), `is`(isClickable()))).perform(click())*/
+
         onView(
-            allOf(withId(R.id.credit_score_donut_view), `is`(isClickable()))).perform(click())
+            allOf(withId(R.id.credit_score_donut_view), `is`(isDisplayed()))).perform(click())
 
         //Then, navigate to detail page
         verify(navController).navigate(HomeFragmentDirections.actionHomeToDetail())

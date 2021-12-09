@@ -10,18 +10,18 @@ import javax.inject.Inject
 class Repository @Inject constructor(
     private val dispatcher: CoroutineDispatcher,
     private val creditScoreService: CreditScoreService,
-    private val creditScoreDAO: CreditScoreDao) {
+    private val creditScoreDAO: CreditScoreDao) : CreditScoreIRepository {
 
     private var creditScoreData : CreditScoreEntity? = null
 
-    suspend fun fetchRemoteCreditScoreData() {
+    override suspend fun fetchRemoteCreditScoreData() {
         withContext(dispatcher){
             val data = creditScoreService.fetchCreditScoreFromApi()
             creditScoreDAO.insertAll(data)
         }
     }
 
-    suspend fun fetchLocalCreditScoreData(): CreditScoreEntity? {
+    override suspend fun fetchLocalCreditScoreData(): CreditScoreEntity? {
         withContext(dispatcher) {
             creditScoreData = creditScoreDAO.getCreditScoreFromDatabase()
             if(creditScoreData == null) {

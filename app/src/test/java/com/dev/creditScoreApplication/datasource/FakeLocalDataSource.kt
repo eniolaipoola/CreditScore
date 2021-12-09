@@ -27,7 +27,7 @@ class FakeLocalDataSource: CreditScoreDao {
             0, 0, true ), null
     )
 
-    override fun getCreditScoreFromDatabase(): CreditScoreEntity? {
+    override fun getCreditScoreFromDatabase(): CreditScoreEntity {
         return creditScoreEntity
     }
 

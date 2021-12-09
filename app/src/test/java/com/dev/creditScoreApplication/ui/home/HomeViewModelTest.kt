@@ -1,7 +1,7 @@
-package com.dev.creditScoreApplication.ui
+package com.dev.creditScoreApplication.ui.home
 
 import com.dev.creditScoreApplication.datasource.RepositoryTest
-import com.dev.creditScoreApplication.ui.home.HomeViewModel
+import junit.framework.TestCase
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.Before
 import org.junit.Test
@@ -9,10 +9,10 @@ import org.junit.Test
 /**
  * Copyright (c) 2021 Eniola Ipoola
  * All rights reserved
- * Created on 13-Nov-2021
- * */
+ * Created on 22-Nov-2021
+ */
 @ExperimentalCoroutinesApi
-class HomeViewModelTest {
+class HomeViewModelTest : TestCase() {
 
     private lateinit var creditScoreRepository: RepositoryTest
     private lateinit var homeViewModel: HomeViewModel
@@ -35,5 +35,18 @@ class HomeViewModelTest {
 
 
         //assertThat(value. not(nullValue()))
+    }
+
+    @Test
+    fun testGetCreditScoreState() {
+        val value = homeViewModel.creditScoreState.value
+    }
+
+    fun testGetCreditScoreData() {
+
+    }
+
+    fun testFetchRemoteCreditScoreData() {
+
     }
 }
